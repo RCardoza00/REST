@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entity.service;
+package service;
 
-import Entity.Productlines;
+import Entity.service.Calificacion;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,54 +26,54 @@ import javax.ws.rs.core.MediaType;
  * @author esnip
  */
 @Stateless
-@Path("entity.productlines")
-public class ProductlinesFacadeREST extends AbstractFacade<Productlines> {
+@Path("entity.calificacion")
+public class CalificacionFacadeREST extends AbstractFacade<Calificacion> {
 
     @PersistenceContext(unitName = "APIRESTPU")
     private EntityManager em;
 
-    public ProductlinesFacadeREST() {
-        super(Productlines.class);
+    public CalificacionFacadeREST() {
+        super(Calificacion.class);
     }
 
     @POST
-    @Override
+    
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Productlines entity) {
-        super.create(entity);
+    public void create(ArrayList<Calificacion> entity) {
+        System.out.println("cocaina420");
+        System.out.println(entity);
+         for (Calificacion c:entity) {
+          super.create(c);
+
+        }
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") String id, Productlines entity) {
-        super.edit(entity);
+    public void edit(@PathParam("id") Integer id, Calificacion entity) {
     }
 
-    @DELETE
-    @Path("{id}")
-    public void remove(@PathParam("id") String id) {
-        super.remove(super.find(id));
-    }
+   
 
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Productlines find(@PathParam("id") String id) {
+    public Calificacion find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Productlines> findAll() {
+    public List<Calificacion> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Productlines> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Calificacion> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 
